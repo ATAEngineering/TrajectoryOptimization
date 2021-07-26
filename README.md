@@ -1,1 +1,1 @@
-# TrjectoryOptimization
+# TrajectoryOptimization
