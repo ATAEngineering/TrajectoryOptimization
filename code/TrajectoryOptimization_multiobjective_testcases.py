@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import TrajectoryOptimization as TrajectoryOptimization
 import numpy as np
-# from tikzplotlib import save as tikz_save
+from tikzplotlib import save as tikz_save
 
 # This code calculates a multiobjective trajectory optimization problem and plots the resulting trajectory
 
@@ -65,6 +65,6 @@ plt.xlabel('Time [s]')
 plt.xlim([0, max(time_t)])
 plt.xticks(t, t)
 plt.grid()
-# tikz_save('min_e.tex')
+tikz_save('multiobj_e_p.tex')
 
 plt.show()

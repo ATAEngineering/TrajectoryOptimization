@@ -189,25 +189,35 @@ plt.grid()
 # Compute and print tables
 E_values = np.array([E_v, E_a, E_j, E_p])
 E_max = E_values.max()
-E_percent = E_values/E_max
+E_min = E_values.min()
+E_max_percent = E_values/E_max
+E_min_percent = E_values/E_min
 print("Energy tables")
 print(E_values.T)
 print(E_e)
 print(E_t)
-print(E_percent.T)
+print(E_max_percent.T)
 print(E_e/E_max)
 print(E_t/E_max)
+print(E_min_percent.T)
+print(E_e/E_min)
+print(E_t/E_min)
 
 print("Peak power tables")
 Ppk_values = np.array([Ppk_v, Ppk_a, Ppk_j, Ppk_p])
 Ppk_max = Ppk_values.max()
-Ppk_percent = Ppk_values/Ppk_max
+Ppk_min = Ppk_values.min()
+Ppk_max_percent = Ppk_values/Ppk_max
+Ppk_min_percent = Ppk_values/Ppk_min
 print(Ppk_values.T)
 print(Ppk_e)
 print(Ppk_t)
-print(Ppk_percent.T)
+print(Ppk_max_percent.T)
 print(Ppk_e/Ppk_max)
 print(Ppk_t/Ppk_max)
+print(Ppk_min_percent.T)
+print(Ppk_e/Ppk_min)
+print(Ppk_t/Ppk_min)
 
 plt.show()
 

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import TrajectoryOptimization
 import numpy as np
-# from tikzplotlib import save as tikz_save
+from tikzplotlib import save as tikz_save
 
 # This code computes the Pareto front for a multiobjective optimization problem
 
@@ -45,5 +45,20 @@ plt.scatter(E, P)
 
 plt.grid()
 # tikz_save('pareto_ep.tex')
+
+# Plot normalized to minimums
+bestE = min(E)
+bestP = min(P)
+Eratio = [e/bestE for e in E]
+Pratio = [p/bestP for p in P]
+
+plt.figure(9)
+plt.title('Minimum Total Energy-Peak Power Pareto Front')
+plt.xlabel('Normalized Total Energy [J]')
+plt.ylabel('Normalized Peak Power [W]')
+plt.scatter(Eratio, Pratio)
+
+plt.grid()
+tikz_save('pareto_ep.tex')
 
 plt.show()
