@@ -161,7 +161,7 @@ ions to find a trajectory that meets the system performance requirements.
 ce options such as energy usage to be considered.
  In multi-degree of freedom systems, secondary considerations are typically
  brushed aside even more as the task complexity requires more focus on the
- coordinate motion of muliple stages.
+ coordinate motion of multiple stages.
  This paper presents an optimization framework to generate optimal trajectories
  offline for single- and multi-axis systems based entirely on basic kinematic
  relationships.
@@ -740,17 +740,18 @@ Should this be expanded to include all variables?
 
 \begin_layout Section*
 Introduction
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Introduction"
 
 \end_inset
 
- Trajectory generation is a well studied area with extensive literature
- describing solutions for a myriad of applications
+
+\end_layout
+
+\begin_layout Standard
+Trajectory generation is a well studied area with extensive literature describin
+g solutions for a myriad of applications
 \begin_inset space ~
 \end_inset
 
@@ -887,17 +888,18 @@ on around a generic cost function with kinematic constraints.
 
 \begin_layout Section*
 Problem Formulation
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:ProblemFormulation"
 
 \end_inset
 
- Trajectory motion consists of multiple kinematic variables , including
- displacement 
+
+\end_layout
+
+\begin_layout Standard
+Trajectory motion consists of multiple kinematic variables, including displaceme
+nt 
 \begin_inset Formula $d$
 \end_inset
 
@@ -986,7 +988,7 @@ s.t.\quad & \mathbf{Ax}=\mathbf{b}\\
 
 \end_inset
 
-Where 
+where 
 \begin_inset Formula $J$
 \end_inset
 
@@ -1032,6 +1034,7 @@ noprefix "false"
 v_{k+1}=v_{k}+a_{k}\Delta t\\
 a_{k+1}=a_{k}+j_{k}\Delta t
 \end{split}
+\label{eq:kinematicConstraints}
 \end{align}
 
 \end_inset
@@ -1041,26 +1044,17 @@ a_{k+1}=a_{k}+j_{k}\Delta t
 
 \begin_layout Standard
 These constraints, the decision variable box constraints, and boundary condition
-s for a motion starting and stopping at rest can be used to formulate the
- optimization problem as: 
-\begin_inset Note Note
+s for a motion starting and stopping at rest
+\begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-Aren't 
-\begin_inset Formula $a_{0}=0$
-\end_inset
-
-and 
-\begin_inset Formula $a_{N}=0$
-\end_inset
-
- redundant?
+Different boundary conditions can be used without loss of generality.
 \end_layout
 
 \end_inset
 
-
+ can be used to formulate the optimization problem as: 
 \begin_inset Formula 
 \begin{align}
 \begin{array}{rl}
@@ -1114,7 +1108,7 @@ where
 \begin_inset Formula $k\in\left[1,\;2,\;\ldots\;,\;N-1,\;N\right]$
 \end_inset
 
- indexes totalling 
+ indexes totaling 
 \begin_inset Formula $N$
 \end_inset
 
@@ -1165,7 +1159,7 @@ literal "false"
 \begin_inset Formula $\mathbf{a}$
 \end_inset
 
-, and 
+, 
 \begin_inset Formula $\mathbf{j}$
 \end_inset
 
@@ -1174,6 +1168,7 @@ literal "false"
 \end_inset
 
 .
+ 
 \end_layout
 
 \begin_layout Subsection*
@@ -1260,7 +1255,7 @@ The 2-norm only varies from the RMS value by a constant of
 \begin_inset Text
 
 \begin_layout Plain Layout
-(RMS or Euclidian Norm)
+(RMS or Euclidean Norm)
 \end_layout
 
 \end_inset
@@ -1299,35 +1294,6 @@ status open
 
 \begin_layout Plain Layout
 FIXME: get the footnote to work properly within the table
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-textbf{Make the point about how the various cost functions are related!!}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -1427,7 +1393,7 @@ Because norms have the property with constant
 \end_layout
 
 \begin_layout Standard
-and mass is constant, the objective to mimize the norm of the power can
+and mass is constant, the objective to minimize the norm of the power can
  be reduced to
 \begin_inset Formula 
 \begin{equation}
@@ -1440,11 +1406,7 @@ J=\|\mathbf{P}\|_{p}=m\|\mathbf{a}\circ\mathbf{v}\|_{p}\label{eq:power_norm}
 \end_layout
 
 \begin_layout Standard
-Therefore, combining the optimization problem Eq.
-\begin_inset space ~
-\end_inset
-
-
+Therefore, combining the optimization problem 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:baseProgram"
@@ -1454,11 +1416,7 @@ noprefix "false"
 
 \end_inset
 
- with Eq.
-\begin_inset space ~
-\end_inset
-
-
+ with 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:power_norm"
@@ -1490,7 +1448,7 @@ n.
 ) of power as the cost function will also minimize the total energy of the
  movement.
  This can be shown by writing the total energy as the absolute sum of the
- instanteous power multiplied by the constant time interval 
+ instantaneous power multiplied by the constant time interval 
 \begin_inset Formula $\Delta t$
 \end_inset
 
@@ -1502,7 +1460,7 @@ n.
 -norm: 
 \begin_inset Formula 
 \begin{equation}
-E_{total}=\sum\limits _{i=1}^{n}|P_{i}\Delta t|=\sum\limits _{i=1}^{n}|P_{i}|\Delta t=\|\mathbf{P}\|_{1}\Delta t\label{eq:energy}
+E_{total}=\sum\limits _{i=1}^{n}|P_{i}\Delta t|=\sum\limits _{i=1}^{n}|P_{i}|\Delta t=\|\mathbf{P}\|_{1}\Delta t=m\|\mathbf{a}\circ\mathbf{v}\|_{1}\Delta t\label{eq:energy}
 \end{equation}
 
 \end_inset
@@ -1610,25 +1568,12 @@ Minimizing Move Time
 \end_layout
 
 \begin_layout Standard
-In order to minimize the move time, 
+In order to minimize the move time step, 
 \begin_inset Formula $\Delta t$
 \end_inset
 
- is used as a decision variable, making the optimization program nonlinear.
- The cost function becomes
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-I'm not sure about all of this.
- Something doesn't make sense.
- What is nonlinear? The constraints will be, but the cost function isn't
- because N is constant.
-\end_layout
-
-\end_inset
-
- 
+ is added as a decision variable.
+ The cost function becomes 
 \begin_inset Formula 
 \begin{equation}
 J=N\Delta t
@@ -1641,30 +1586,41 @@ where
 \end_inset
 
  is again the number of time steps.
- To ensure sufficient solution fidelity, appropriate values for 
-\begin_inset Formula $\Delta t$
-\end_inset
-
- and 
+ It is important here to ensure that the time discretization factor 
 \begin_inset Formula $N$
 \end_inset
 
- must be selected.
-\begin_inset Note Note
-status open
+ is large enough to accurately capture the system dynamics throughout the
+ range of 
+\begin_inset Formula $\Delta t$
+\end_inset
 
-\begin_layout Plain Layout
-Not sure it is necessary to state that dt and N must have sufficient fidelity.
- Consider removing sentence.
+ encountered while solving the optimization problem.
+ An easy way to do this would be to add side constraints to the permissible
+ of 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:kinematicConstraints"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and selecting a value of 
+\begin_inset Formula $N$
+\end_inset
+
+ that is sufficient for the worst case.
+ 
 \end_layout
 
-\end_inset
-
- In this formulation, the distance constraint of Eq.
-\begin_inset space ~
-\end_inset
-
-
+\begin_layout Standard
+In this cost function formulation, the distance constraint of 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:baseProgram"
@@ -1674,8 +1630,7 @@ noprefix "false"
 
 \end_inset
 
- also becomes nonlinear via the product of two decision variables and takes
- the form
+ must be reformulated as 
 \begin_inset Formula 
 \begin{equation}
 \sum\limits _{k=1}^{N}v_{k}\Delta t=D
@@ -1683,17 +1638,21 @@ noprefix "false"
 
 \end_inset
 
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-This last sentence may be unnecessary.
-\end_layout
+which happens to be the product of two decision variables.
+ As a consequence, a side effect of this formulation is the introduction
+ of nonlinear constraint functions (the kinematic constraints 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:kinematicConstraints"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
-
+ also become nonlinear).
+ These nonlinearities have downstream implications on the selection of appropria
+te optimization algorithms for solving the move time minimization problem.
 \end_layout
 
 \begin_layout Section*
@@ -1708,16 +1667,17 @@ Need to add more details about how the optimization problem was solved.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Implementation"
 
 \end_inset
 
- The use of algebraic modeling languages makes trajectory optimization programs
+
+\end_layout
+
+\begin_layout Standard
+The use of algebraic modeling languages makes trajectory optimization programs
  such as those presented much more accessible to practicing engineers with
  limited knowledge of optimization solvers and nomenclature.
  With that said that are two aspects to note when implementing these programs
@@ -1755,8 +1715,8 @@ Rather than dumping code into an appendix, I suggest putting the code up
 status open
 
 \begin_layout Plain Layout
-I suggest just adding a note to the programs themselves as to which python
- version was used.
+I suggest just adding a note to the code examples themselves as to which
+ python version was used.
 \end_layout
 
 \end_inset
@@ -1809,11 +1769,7 @@ J=\sum_{k=1}^{N}X_{k}
 
 \end_inset
 
-Using these relationships in Eq.
-\begin_inset space ~
-\end_inset
-
-
+Using these relationships in 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:baseProgram"
@@ -1835,7 +1791,27 @@ s.t.\quad & \mathcal{C}\\
 
 \end_inset
 
+where 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
 
+ may be 
+\begin_inset Formula $\mathbf{v}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbf{a}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbf{j}$
+\end_inset
+
+, or 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection*
@@ -1861,7 +1837,27 @@ s.t.\quad & \mathcal{C}
 
 \end_inset
 
+where 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
 
+ may be 
+\begin_inset Formula $\mathbf{v}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbf{a}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbf{j}$
+\end_inset
+
+, or 
+\begin_inset Formula $\mathbf{P}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection*
@@ -1873,11 +1869,7 @@ Peak Norm (
 \end_layout
 
 \begin_layout Standard
-Introduce the same variables and constraints as in Eq.
-\begin_inset space ~
-\end_inset
-
-
+Introduce the same variables and constraints as in 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:1norm"
@@ -1925,56 +1917,11 @@ s.t.\quad & \mathcal{C}\\
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Subsection*
-Minimum Energy Formulation
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-There isn't much value in this explaination of minimum energy as it follows
- directly from previous discussions and these statements don't add anything
- new.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-To minimize energy of the move, use Eq.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:energy"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- for the cost function.
- This results in the following optimization program
-\begin_inset Formula 
-\begin{align}
-\begin{split}\min\limits _{\mathbf{v},\,\mathbf{a},\,\mathbf{j}}\quad & \mathbf{a}^{T}\mathbf{v}\\
-s.t.\quad & \mathcal{C}
-\end{split}
-\end{align}
-
-\end_inset
-
-Where 
+where 
 \begin_inset Formula $\mathbf{x}$
 \end_inset
 
- is 
+ may be 
 \begin_inset Formula $\mathbf{v}$
 \end_inset
 
@@ -1993,196 +1940,38 @@ Where
 .
 \end_layout
 
+\begin_layout Subsection*
+Minimum Total Energy Formulation
+\end_layout
+
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-There may still be some value in describing the nuances of the minimum time
- formulation and how it makes the power constraints pretty ugly.
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-subsection*{Minimum Time Formulation}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
+To minimize the total energy of the move, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:energy"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%To minimize the time of the move, because the formulations are based on
- a constant sampling period, minimizing $
-\backslash
-Delta t$ is the same as minimizing the total time, $t$.
- Therefore, $
-\backslash
-Delta t$ can be used as the cost function.
- This results in the following optimization program:
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
+ is used for the cost function.
+ Since the mass 
+\begin_inset Formula $m$
 \end_inset
 
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-begin{align}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
+ and time step 
+\begin_inset Formula $\Delta t$
 \end_inset
 
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-begin{split}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-min
-\backslash
-limits_{
-\backslash
-mathbf{v},
-\backslash
-,
-\backslash
-mathbf{a},
-\backslash
-,
-\backslash
-mathbf{j},
-\backslash
-,
-\backslash
-Delta t} 
-\backslash
-quad & 
-\backslash
-Delta t
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%s.t.
-\backslash
-quad & 
-\backslash
-mathcal{C}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-end{split}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\backslash
-end{align}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
+ are considered constant here, this results in the following optimization
+ program
+\begin_inset Formula 
+\begin{align}
+\begin{split}\min\limits _{\mathbf{v},\,\mathbf{a},\,\mathbf{j}}\quad & m\Delta t\mathbf{a}^{T}\mathbf{v}\\
+s.t.\quad & \mathcal{C}
+\end{split}
+\end{align}
 
 \end_inset
 
@@ -2191,13 +1980,9 @@ status open
 
 \begin_layout Section*
 Single-Axis Example and Results
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Is it worth showing a mixed optimization case (e.g., weighted min power and
- time)?
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:SingleAxisResults"
 
 \end_inset
 
@@ -2205,13 +1990,7 @@ Is it worth showing a mixed optimization case (e.g., weighted min power and
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:SingleAxisResults"
-
-\end_inset
-
- To demonstrate the above trajectory optimization formulations, a realistic
+To demonstrate the above trajectory optimization formulations, a realistic
  problem for a small single axis motion system is used.
  The set of system parameters and constraints are provided in 
 \begin_inset CommandInset ref
@@ -2226,20 +2005,17 @@ noprefix "false"
 .
  Trajectory optimization results are shown for minimizing velocity, acceleration
 , jerk, power, and time.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Where is the minimal energy case?
-\end_layout
-
-\end_inset
-
  In the case of velocity minimization, two different bounds on the jerk
  were used to show the effects of the amount of jerk in the system.
- Peak power and energy usage minimization are then compared between the
- different cases before exploring the relationship between the two in a
- multi-objective minimization problem.
+ As explained previously, minimizing total energy is equivalent to minimizing
+ the 
+\begin_inset Formula $\mathcal{L}_{1}$
+\end_inset
+
+-norm of power, so this case is redundant.
+ Peak power and energy usage minimization are compared between the different
+ cases before exploring the relationship between the two in a multi-objective
+ minimization problem.
  In all simulations the Generalized Disjunctive Programming optimizer was
  used (referenced as gdpopt within Pyomo 
 \begin_inset CommandInset citation
@@ -2254,7 +2030,7 @@ literal "false"
 status open
 
 \begin_layout Plain Layout
-Need ref
+Need real ref
 \end_layout
 
 \end_inset
@@ -2314,21 +2090,6 @@ mass (
 
 \begin_layout Plain Layout
 10 kg 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-I bumped this up to 10kg in the code and it does a better job of getting
- somewhat near the power limit, so as to make it relevant.
-\end_layout
-
-\begin_layout Plain Layout
-The plots still need to be updated accordingly.
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -2582,7 +2343,7 @@ l profile, with indistinguishable results when using the
 \end_inset
 
  norms.
- Another result of interest here is that the trajectoryproduced by minimizing
+ Another result of interest here is that the trajectory produced by minimizing
  
 \begin_inset Formula $\|v\|_{1}$
 \end_inset
@@ -2951,7 +2712,7 @@ Minimal Time
 \begin_layout Standard
 The minimal time trajectory results in an S-curve velocity profile.
  In separate tests not shown, it was found that as the final time was manually
- reduced for any of the previously described optimization scenaries, the
+ reduced for any of the previously described optimization scenarios, the
  results converged to this same minimum time S-curve solution.
  This result can potentially be used to justify the specification of a different
  actuator that can meet requirements but will also be able to lower to total
@@ -3045,13 +2806,13 @@ noprefix "false"
 \begin_inset Formula $\mathcal{L}_{1}$
 \end_inset
 
-- norm of Power similarly achieves the minimum total energy mark.
+ norm of Power similarly achieves the minimum total energy mark.
  Minimal peak power, on the other hand, is generally reduced by minimizing
  the jerk or more directly so by minimizing the 
 \begin_inset Formula $\mathcal{L}_{\infty}$
 \end_inset
 
--norm of the power.
+ norm of the power.
  Simultaneous comparison of these tables illustrates the well-known tradeoff
  that must be considered between system specifications and performance requireme
 nts.
@@ -3729,21 +3490,6 @@ name "tab:power"
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-I think it would be worth adding a simple mixed optimization problem here
- (saving more complex investigations for future work, e.g.
- exploring the pareto front).
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection*
 Multi-Objective Trajectory Optimization
 \end_layout
@@ -3753,7 +3499,7 @@ Extension of the trajectory optimization framework to mixed optimization
  problems can be easily handled by modifying the cost function in 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:optStatement"
+reference "eq:baseProgram"
 plural "false"
 caps "false"
 noprefix "false"
@@ -3761,10 +3507,14 @@ noprefix "false"
 \end_inset
 
  with the weighted multi-objective formulation
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \begin{align}
 \begin{split} & \min\limits _{\mathbf{x}}\;\sum_{i}w_{i}J_{i}\\
-s.t.\quad & \sum_{i}w_{i}=1
+s.t.\quad & \mathcal{C}\\
+ & \sum_{i}w_{i}=1
 \end{split}
 \label{eq:multioptStatement}
 \end{align}
@@ -3811,7 +3561,7 @@ noprefix "false"
 \end_inset
 
  in which weights were varied from 0 to 1.
- Representing a range of possible solutions to this problem, at the extremes
+ Representing the range of possible solutions to this problem, at the extremes
  the Pareto front replicates the best and worst energy and power case results
  shown in Tables 
 \begin_inset CommandInset ref
@@ -3835,8 +3585,8 @@ noprefix "false"
 
 .
  In between lies a trade space between the two cost functions where an engineer
- can find a motion profile that appropriately balances the needs of the
- system.
+ can find a motion profile that appropriately balances the needs of their
+ particular system.
 \end_layout
 
 \begin_layout Standard
@@ -3915,18 +3665,351 @@ name "fig:pareto"
 \end_layout
 
 \begin_layout Section*
-Multi-Axis Example
+Multi-Axis Trajectory Optimization Example
 \end_layout
 
 \begin_layout Standard
-asdf
+The trajectory optimization framework can be generalized to multi-axis problems
+ by extension of the problem formulation 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:baseProgram"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ with new kinematic variables and associated kinematic constraints 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:kinematicConstraints"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for each moving body.
+ Also necessary is the reformulation of the cost and objective function
+ variables to include coupled effects of the system (e.g., staged motion and
+ accompanying dynamics).
+\end_layout
+
+\begin_layout Standard
+Here we demonstrate such an extension through and example of a two-link
+ Selective Compliance Articulated Robotic Arm (SCARA).
+ Depicted in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SCARA"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the SCARA consists of a fixed rotary joint rotating a link at the end
+ of which another rotary joint/link pair is situated.
+ In this example, it is clear that the kinematics of the endpoint of link
+ 2, as well as the joint torque and power requirements, are coupled and
+ dependent on the relative motion of the two joints.
+ Derivation of these relationships is straightforward using Lagrange's equations
+ and will not be reproduced here.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/SCARA.PNG
+
+\end_inset
+
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+UPDATE ME!
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Multi-Axis SCARA Example
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:SCARA"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To exercise this example, we define a trajectory generation problem for
+ the SCARA starting at rest such that the tip velocity 
+\begin_inset Formula $\left\langle v_{x}^{tip},v_{y}^{tip}\right\rangle $
+\end_inset
+
+ of the second link is equal to 
+\begin_inset Formula $\left\langle 0,v_{f}^{tip}\right\rangle $
+\end_inset
+
+ at 
+\begin_inset Formula $t_{f}$
+\end_inset
+
+.
+ We choose to formulate the tip velocities as constraints while the cost
+ function minimizes the equally weighted peak power (
+\begin_inset Formula $\mathcal{L}_{\infty}$
+\end_inset
+
+ norm) of the two joint actuators.
+ In this case we only care about hitting the velocity target at the end
+ of motion, so the final position and acceleration constraints 
+\begin_inset Formula $d_{N}$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{N}$
+\end_inset
+
+ are removed from the problem formulation.
+ Note that this does not dictate the position or pose of the SCARA at the
+ end of motion, only the tip velocity, so there may be many ways in which
+ the end condition may manifest.
+ An alternative formulation to this problem could instead add new constraint
+ equations to enforce the tip velocity at an intermediate point in time.
+\end_layout
+
+\begin_layout Standard
+The solution of this trajectory generation problem is shown through the
+ following figures.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SCARA_states"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the initial and final positions of the SCARA, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SCARA_trajectories"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the motion profiles of the two joint actuators, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SCARA_tip_position"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the trajectories and in-plane motion of the link tips.
+ From the motion profiles it is clear that the position (limited to 
+\begin_inset Formula $\pm\pi$
+\end_inset
+
+ radians) and jerk side constraints are being enforced at various points
+ through the motion, while the peak power cost function manifests as a flattenin
+g of the actuator power curves.
+ An interesting outcome of this example is that the optimizer plans 
+\begin_inset Quotes eld
+\end_inset
+
+wind-up
+\begin_inset Quotes erd
+\end_inset
+
+ motion for the arm (much like a pitcher throwing a baseball), which it
+ turns out is required in order to reach the tip velocities within the given
+ joint position constraints (i.e., it is not possible to reach the tip speeds
+ if only forward motion is allowed).
+ The optimization code used for this example, along with specific link dimension
+s and properties, is provided on GitHub at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+TBDsite
+\end_layout
+
+\end_inset
+
+.
+ Readers are encouraged to explore this example to better understand the
+ relationship between the problem formulation, variables, and constraints.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figures/SCARA.PNG
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+UPDATE ME!
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Starting and Ending Poses of the SCARA
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:SCARA_states"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "figures/2link_trajectory_m1.tex"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "figures/2link_trajectory_m2.tex"
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+SCARA Motion Profiles for (left) Joint 1 and (right) Joint 2
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:SCARA_trajectories"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "figures/2link_tip_position_2d.tex"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "figures/2link_tip_position_history.tex"
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Minimum Mixed Total Energy-Peak Power Objective Trajectories - Equal Weighting
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:SCARA_tip_position"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
 Conclusions and Future Work
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:conclusions"
@@ -3937,9 +4020,9 @@ name "sec:conclusions"
 \end_layout
 
 \begin_layout Standard
-This paper provides a straight forward analysis tool for optimizing 1D movement
- trajectories that motion systems engineers can use to increased performance
- in their systems.
+This paper provides a straight forward analysis tool for optimizing servo
+ movement trajectories that motion systems engineers can use to tailor the
+ performance of their systems.
  Multiple objectives were proposed to minimize different aspects of the
  trajectory profile.
  Results showed that minimization of the 
@@ -3965,8 +4048,27 @@ This paper provides a straight forward analysis tool for optimizing 1D movement
  This suggests that the trapezoidal velocity profile is equivalent to the
  minimum move time profile given specific bounds.
  Further comparison of total energy and peak power between the results clearly
- demonstrate the tradeoff that must be considered with selection a motion
+ demonstrate the trade off that must be considered with selection a motion
  profile.
+\end_layout
+
+\begin_layout Standard
+A key distinction between the trajectory optimization formulation presented
+ here and other optimization problem formulations of dynamic systems is
+ the independence of the kinematic variables.
+ Whereas in most other formulations the kinematics are constrained implicitly
+ through the use of a time integration solver or algorithm (e.g., Runge-Kutta
+ or forward Euler), here the kinematic variables are allowed to fall out
+ of dynamic equilibrium within the context of the optimization program (i.e.,
+ the kinematic constraints may not be satisfied for a given optimization
+ iteration).
+ This unique feature affords the present formulation with additional freedom
+ to explore the optimal solution landscape by not being required to strictly
+ follow the laws of physics every step of the way.
+ It is only within the scope of the final solution that physical laws must
+ be upheld, so it can be envisioned that this relaxation may bring algorithmic
+ benefits in terms of improved solution convergence rate and avoidance of
+ local minima, although these suppositions are not investigated here.
 \end_layout
 
 \begin_layout Standard
@@ -3974,45 +4076,15 @@ There exist many extensions and/or other use cases of this work, including:
 \end_layout
 
 \begin_layout Enumerate
-Adding friction with +/- velocity variables 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-What do you mean by 
-\begin_inset Quotes eld
-\end_inset
-
-+/- velocity variables
-\begin_inset Quotes erd
-\end_inset
-
-?
-\end_layout
-
-\end_inset
-
-- Including friction within trajectory optimization will enable improved
- power and energy estimates as well as the ability to derive system friction
- requirements from system performance specifications.
+Adding friction - Including friction within trajectory optimization will
+ enable improved power and energy estimates as well as the ability to derive
+ system friction requirements from system performance specifications.
 \end_layout
 
 \begin_layout Enumerate
-Multi-objective/norm regularization - Extending these results to include
- weighted summations of the norms of the signals of interest will allow
- for more tailored trajectories to balance the tradeoffs between generation
- of even more potential trajectories for a given system.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-If the above mixed objective example is added then this extension could
- be retasked to more exploring than extending.
-\end_layout
-
-\end_inset
-
-
+Multi-objective/norm regularization - Exploring other cost function formulations
+ that allow for more tailored trajectories to balance the trade offs between
+ power, energy, and actuator limits.
 \end_layout
 
 \begin_layout Enumerate

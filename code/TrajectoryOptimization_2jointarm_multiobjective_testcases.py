@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import TrajectoryOptimization_2jointarm as TrajectoryOptimization
 import math
 import numpy as np
-# from tikzplotlib import save as tikz_save
+from tikzplotlib import save as tikz_save
 
 def make_plots(ret):
     dt, theta1, theta2, w1, w2, z1, z2, j1, j2, t1, t2, p1, p2, tipPosX, tipPosY, tipVelX, tipVelY = ret
@@ -48,6 +48,7 @@ def make_plots(ret):
     plt.xticks(t, [])
     plt.grid()
     plt.xlabel('Time [s]')
+    tikz_save('../paper/figures/2link_trajectory_m1.tex')
 
     plt.figure(2)
     plt.subplot(611)
@@ -88,6 +89,7 @@ def make_plots(ret):
     plt.xticks(t, [])
     plt.grid()
     plt.xlabel('Time [s]')
+    tikz_save('../paper/figures/2link_trajectory_m2.tex')
 
     plt.figure(3)
     plt.subplot(211)
@@ -104,6 +106,7 @@ def make_plots(ret):
     plt.xticks(t, [])
     plt.grid()
     plt.xlabel('Time [s]')
+    tikz_save('../paper/figures/2link_tip_position_history.tex')
 
     plt.figure(4)
     plt.title('X-Y Tip Position')
@@ -111,6 +114,7 @@ def make_plots(ret):
     plt.xlabel('Tip X Postion[m]')
     plt.ylabel('Tip Y Position [m]')
     plt.grid()
+    tikz_save('../paper/figures/2link_tip_position_2d.tex')
 
     plt.show()
 
