@@ -4,18 +4,23 @@
 \definecolor{color0}{rgb}{0.12156862745098,0.466666666666667,0.705882352941177}
 
 \begin{axis}[
+width=\columnwidth,
+height=\columnwidth,
 tick align=outside,
 tick pos=left,
-title={X-Y Tip Position},
+%title={X-Y Tip Position},
 x grid style={white!69.0196078431373!black},
 xlabel={Tip X Postion[m]},
 xmajorgrids,
-xmin=-0.548390576617409, xmax=1.06263107303941,
+%xmin=-0.548390576617409, xmax=1.06263107303941,
+xmin=-0.5, xmax=1.0,
 xtick style={color=black},
 y grid style={white!69.0196078431373!black},
-ylabel={Tip Y Position [m]},
+ylabel={Tip Y Position [$m$]},
 ymajorgrids,
-ymin=-0.85932572923062, ymax=0.103907836781137,
+%ymin=-0.85932572923062, ymax=0.103907836781137,
+%ymin=-0.85932572923062, ymax=0.103907836781137,
+ymin=-1.0, ymax=0.5,
 ytick style={color=black}
 ]
 \addplot [semithick, color0]

@@ -13,10 +13,13 @@ xmajorgrids,
 xmin=0.951969544385374, xmax=2.00863956790714,
 xtick style={color=black},
 y grid style={white!69.0196078431373!black},
-ylabel={Peak Power [W]},
+ylabel={Peak Power [$W$]},
 ymajorgrids,
 ymin=0.793506983229606, ymax=5.33635335217828,
-ytick style={color=black}
+ytick style={color=black},
+width=\columnwidth,
+height=0.8*\columnwidth,
+scatter/classes={a={mark=o,draw=blude,fill=blue}}
 ]
 \addplot [draw=color0, fill=color0, mark=*, only marks, scatter]
 table{%
