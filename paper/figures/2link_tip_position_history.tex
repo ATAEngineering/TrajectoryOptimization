@@ -429,6 +429,10 @@ table {%
 };
 
 \nextgroupplot[
+legend cell align={left},
+legend entries={{\footnotesize{$x$}},{\footnotesize{$y$}}},
+legend style={at={(0.5,-1.0)}, anchor=south, draw=white!80.0!black},
+legend columns=2,
 tick align=outside,
 tick pos=left,
 x grid style={white!69.0196078431373!black},
@@ -437,11 +441,13 @@ xmajorgrids,
 xmin=0, xmax=1,
 xtick style={color=black},
 y grid style={white!69.0196078431373!black},
-ylabel={Tip speed [m/s]},
+ylabel={Tip speed [$m/s$]},
 ymajorgrids,
 ymin=-6.44191173366682, ymax=13.9258052172039,
 ytick style={color=black}
 ]
+\addlegendimage{no markers, color0}
+\addlegendimage{no markers, color1}
 \addplot [semithick, color0]
 table {%
 0 0

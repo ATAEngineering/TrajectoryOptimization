@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+
+\definecolor{color0}{rgb}{0.12156862745098,0.466666666666667,0.705882352941177}
+\definecolor{color1}{rgb}{0.62156862745098,0.266666666666667,0.205882352941177}
+\definecolor{color2}{rgb}{0.92156862745098,0.466666666666667,0.205882352941177}
+\definecolor{color3}{rgb}{0.12156862745098,0.466666666666667,0.705882352941177}
+\definecolor{color4}{rgb}{0.12156862745098,0.466666666666667,0.705882352941177}
+
+
+\draw (0,0) -- (2,0);
+\draw (1.5,0) arc (0:45:1.5);
+\draw (1.7,.5)  node{$\theta_1$};
+
+\draw (4.24,4.24) -- (6.24,4.24);
+\draw (5.74,4.24) arc (0:-45:1.5);
+\draw (5.94,3.54)  node{$\theta_2$};
+
+\draw[line width=8pt,color=color0] (0,0)--(4.24,4.24);
+\draw[line width=6pt,color=color1] (4.24,4.24)--(7.07,1.41);
+\draw[fill=color2] (0,0) circle (6pt);
+\draw[fill=color2] (4.24,4.24) circle (6pt);
+
+\draw (0,0.5)  node{$\tau_1$};
+\draw (4.24,3.54)  node{$\tau_2$};
+
+
+\end{tikzpicture}

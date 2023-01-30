@@ -51,10 +51,10 @@
 Single- and Multi-Degree of Freedom Servo Trajectory Generation: An
 Optimization Framework, Implementation, and Examples
 }
-\author{Layne Clemen$^{1}$ and Cory J. Rupp$^{2*}$%
-\thanks{$^{1}$Layne Clemen, ???, San Diego, CA, USA
-	{\tt\small layne.clemen@???.com}}%
-\thanks{$^{2}$Cory J. Rupp, ATA Engineering, Inc., Lakewood, CO, USA
+\author{Layne Clemen$^{1}$ and Cory J. Rupp$^{2,*}$%
+\thanks{$^{1}$Elexity, Bend, OR, USA
+	{\tt\small layne@elexity.io}}%
+\thanks{$^{2}$ATA Engineering, Inc., Lakewood, CO, USA
 	{\tt\small cory.rupp@ata-e.com}}%
 \thanks{$^{*}$Corresponding author}%
 }
@@ -1477,7 +1477,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-System Parameters
+System parameters
 \end_layout
 
 \end_inset
@@ -1799,7 +1799,7 @@ filename "figures/min_v.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum Velocity Trajectories - Nominal 
+Minimum velocity trajectories - nominal 
 \begin_inset Formula $\bar{j}$
 \end_inset
 
@@ -1855,7 +1855,7 @@ filename "figures/min_v_high_j.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum Velocity Trajectories - 10x 
+Minimum velocity trajectories - 10x 
 \begin_inset Formula $\bar{j}$
 \end_inset
 
@@ -1966,7 +1966,7 @@ filename "figures/min_a.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum Acceleration Trajectories
+Minimum acceleration trajectories
 \end_layout
 
 \end_inset
@@ -2012,7 +2012,7 @@ filename "figures/min_j.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum Jerk Trajectories
+Minimum jerk trajectories
 \end_layout
 
 \end_inset
@@ -2110,7 +2110,7 @@ filename "figures/min_p.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum Power Trajectories
+Minimum power trajectories
 \end_layout
 
 \end_inset
@@ -2170,7 +2170,7 @@ filename "figures/min_dt.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum Time Trajectory
+Minimum time trajectory
 \end_layout
 
 \end_inset
@@ -2257,7 +2257,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Total Energy Relative to Best Case
+Total energy relative to best case
 \end_layout
 
 \end_inset
@@ -2593,7 +2593,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Peak Power Relative to Best Case
+Peak power relative to best case
 \end_layout
 
 \end_inset
@@ -3033,7 +3033,7 @@ filename "figures/multiobj_e_p.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum Mixed Total Energy-Peak Power Objective Trajectories - Equal Weighting
+Minimum mixed total energy-peak power objective trajectories - equal weighting
 \end_layout
 
 \end_inset
@@ -3069,7 +3069,7 @@ filename "figures/pareto_ep.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum Total Energy-Peak Power Pareto Front -- Normalized to Axes Minima
+Minimum total energy-peak power Pareto front -- normalized to axes minima
 \end_layout
 
 \end_inset
@@ -3152,21 +3152,10 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Graphics
-	filename figures/SCARA.PNG
-	width 100col%
-	height 100col%
-	keepAspectRatio
-
-\end_inset
-
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-UPDATE ME!
-\end_layout
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "figures/scara1.tex"
 
 \end_inset
 
@@ -3174,7 +3163,7 @@ UPDATE ME!
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Multi-Axis SCARA Example
+Multi-axis SCARA example
 \end_layout
 
 \end_inset
@@ -3208,7 +3197,7 @@ To exercise this example, we define a trajectory generation problem for
 \begin_inset Formula $t_{f}$
 \end_inset
 
-.
+ (as if it were throwing a baseball).
  We choose to formulate the tip velocities as constraints while the cost
  function minimizes the equally weighted peak power (
 \begin_inset Formula $\mathcal{L}_{\infty}$
@@ -3335,21 +3324,10 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Graphics
-	filename figures/SCARA.PNG
-	width 100col%
-	height 100col%
-	keepAspectRatio
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-UPDATE ME!
-\end_layout
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "figures/scara2.tex"
 
 \end_inset
 
@@ -3357,7 +3335,7 @@ UPDATE ME!
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Starting and Ending Poses of the SCARA
+Starting (solid line) and ending (dashed line) poses of the SCARA
 \end_layout
 
 \end_inset
@@ -3393,7 +3371,7 @@ filename "figures/2link_trajectory_m1.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-SCARA Motion Profiles for Joint 1
+SCARA motion profiles for joint 1
 \end_layout
 
 \end_inset
@@ -3429,7 +3407,7 @@ filename "figures/2link_trajectory_m2.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-SCARA Motion Profiles for Joint 2
+SCARA motion profiles for joint 2
 \end_layout
 
 \end_inset
@@ -3465,7 +3443,7 @@ filename "figures/2link_tip_position_history.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-SCARA Tip Trajectories
+SCARA tip trajectories
 \end_layout
 
 \end_inset
@@ -3498,10 +3476,20 @@ filename "figures/2link_tip_position_2d.tex"
 \end_inset
 
 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Add link1 trace
+\end_layout
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-SCARA Tip In-plane Motion
+SCARA tip in-plane motion
 \end_layout
 
 \end_inset
