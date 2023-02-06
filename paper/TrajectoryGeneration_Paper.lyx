@@ -1710,25 +1710,19 @@ Fig.
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:low_j"
+reference "fig:min_v"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
- shows the minimum velocity trajectories for all norms studied and Fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:high_j"
-plural "false"
-caps "false"
-noprefix "false"
-
+ shows the minimum velocity trajectories for all norms studied using the
+ nominal 
+\begin_inset Formula $\bar{j}$
 \end_inset
 
- shows the results when 
+ and when 
 \begin_inset Formula $\bar{j}$
 \end_inset
 
@@ -1786,7 +1780,7 @@ status open
 \begin_inset CommandInset include
 LatexCommand input
 preview true
-filename "figures/min_v.tex"
+filename "figures/min_v_lowhigh.tex"
 
 \end_inset
 
@@ -1798,7 +1792,11 @@ Minimum velocity trajectories - nominal
 \begin_inset Formula $\bar{j}$
 \end_inset
 
+ (solid) and 10x 
+\begin_inset Formula $\bar{j}$
+\end_inset
 
+ (dashed)
 \end_layout
 
 \end_inset
@@ -1806,7 +1804,7 @@ Minimum velocity trajectories - nominal
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:low_j"
+name "fig:min_v"
 
 \end_inset
 
@@ -1827,46 +1825,6 @@ In the plots, it may be helpful to plot a dashed red line (or shaded regions
  or similar) to indicate constraint boundaries when they are within the
  frame.
  e.g., in these it would be for acceleration and jerk.
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset CommandInset include
-LatexCommand input
-preview true
-filename "figures/min_v_high_j.tex"
-
-\end_inset
-
- 
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Minimum velocity trajectories - 10x 
-\begin_inset Formula $\bar{j}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:high_j"
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -3028,7 +2986,7 @@ filename "figures/multiobj_e_p.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum mixed total energy-peak power objective trajectories - equal weighting
+Minimum mixed total energy-peak power objective trajectories – equal weighting
 \end_layout
 
 \end_inset
@@ -3064,7 +3022,7 @@ filename "figures/pareto_ep.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum total energy-peak power Pareto front -- normalized to axes minima
+Minimum total energy-peak power Pareto front – normalized to axes minima
 \end_layout
 
 \end_inset
@@ -3119,63 +3077,13 @@ noprefix "false"
 \begin_layout Standard
 Here we demonstrate such an extension through and example of a two-link
  Selective Compliance Articulated Robotic Arm (SCARA).
- Depicted in Fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:SCARA"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, the SCARA consists of a fixed rotary joint rotating a link at the end
- of which another rotary joint/link pair is situated.
+ A SCARA consists of a fixed rotary joint rotating a link at the end of
+ which another rotary joint/link pair is situated.
  In this example, it is clear that the kinematics of the endpoint of link
  2, as well as the joint torque and power requirements, are coupled and
  dependent on the relative motion of the two joints.
  Derivation of these relationships is straightforward using Lagrange's equations
  and will not be reproduced here.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset CommandInset include
-LatexCommand input
-preview true
-filename "figures/scara1.tex"
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Multi-axis SCARA example
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:SCARA"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -3230,29 +3138,19 @@ noprefix "false"
 
 \end_inset
 
- shows the initial and final positions of the SCARA, Fig.
+ shows the initial and final positions of the SCARA as well as traces of
+ the tip positons, Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:SCARA_trajectories-j1"
+reference "fig:SCARA_trajectories"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
- and Fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:SCARA_trajectories-j2"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- show the motion profiles of the two joint actuators, and Fig.
+ shows the motion profiles of the two joint actuators, and Fig.
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3263,18 +3161,7 @@ noprefix "false"
 
 \end_inset
 
- and Fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:SCARA_tip_position-inplane"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- show the trajectories and in-plane motion of the link tips.
+ shows the trajectories the link tips.
  From the motion profiles it is clear that the position (limited to 
 \begin_inset Formula $\pm\pi$
 \end_inset
@@ -3330,7 +3217,7 @@ filename "figures/scara2.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Starting (solid line) and ending (dashed line) poses of the SCARA
+SCARA in-plane motion with starting (solid) and ending (dashed) poses
 \end_layout
 
 \end_inset
@@ -3358,7 +3245,7 @@ status open
 \begin_inset CommandInset include
 LatexCommand input
 preview true
-filename "figures/2link_trajectory_m1.tex"
+filename "figures/2link_trajectory.tex"
 
 \end_inset
 
@@ -3366,7 +3253,7 @@ filename "figures/2link_trajectory_m1.tex"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-SCARA motion profiles for joint 1
+SCARA motion profiles
 \end_layout
 
 \end_inset
@@ -3374,7 +3261,7 @@ SCARA motion profiles for joint 1
 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:SCARA_trajectories-j1"
+name "fig:SCARA_trajectories"
 
 \end_inset
 
@@ -3394,43 +3281,7 @@ status open
 \begin_inset CommandInset include
 LatexCommand input
 preview true
-filename "figures/2link_trajectory_m2.tex"
-
-\end_inset
-
- 
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-SCARA motion profiles for joint 2
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:SCARA_trajectories-j2"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset CommandInset include
-LatexCommand input
-preview true
-filename "figures/2link_tip_position_history.tex"
+filename "figures/2link_tip_position_history_forpaper.tex"
 
 \end_inset
 
@@ -3447,52 +3298,6 @@ SCARA tip trajectories
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:SCARA_tip_position-trajectories"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset CommandInset include
-LatexCommand input
-preview true
-filename "figures/2link_tip_position_2d.tex"
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Add link1 trace
-\end_layout
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-SCARA tip in-plane motion
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:SCARA_tip_position-inplane"
 
 \end_inset
 

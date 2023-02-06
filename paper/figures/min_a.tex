@@ -5,9 +5,10 @@
 \definecolor{color1}{rgb}{1,0.498039215686275,0.0549019607843137}
 \definecolor{color2}{rgb}{0.172549019607843,0.627450980392157,0.172549019607843}
 
-\begin{groupplot}[group style={group size=1 by 5}]
+\begin{groupplot}[group style={group size=1 by 5, vertical sep=12}]
 \nextgroupplot[
-tick align=outside,
+ytick align=outside,
+xticklabels={},
 tick pos=left,
 x grid style={white!69.01960784313725!black},
 xmajorgrids,
@@ -631,7 +632,8 @@ table [row sep=\\]{%
 1	0.254 \\
 };
 \nextgroupplot[
-tick align=outside,
+ytick align=outside,
+xticklabels={},
 tick pos=left,
 x grid style={white!69.01960784313725!black},
 xmajorgrids,
@@ -1254,7 +1256,8 @@ table [row sep=\\]{%
 1	1.74825809539874e-49 \\
 };
 \nextgroupplot[
-tick align=outside,
+ytick align=outside,
+xticklabels={},
 tick pos=left,
 x grid style={white!69.01960784313725!black},
 xmajorgrids,
@@ -1877,7 +1880,8 @@ table [row sep=\\]{%
 1	-1.6901798905006e-35 \\
 };
 \nextgroupplot[
-tick align=outside,
+ytick align=outside,
+xticklabels={},
 tick pos=left,
 x grid style={white!69.01960784313725!black},
 xmajorgrids,
@@ -2502,7 +2506,7 @@ table [row sep=\\]{%
 \nextgroupplot[
 legend cell align={left},
 legend entries={{\footnotesize{$\|a\|_1$}},{\footnotesize{$\|a\|_2$}},{\footnotesize{$\|a\|_\infty$}}},
-legend style={at={(0.5,-1.0)}, anchor=south, draw=white!80.0!black},
+legend style={at={(0.5,-0.9)}, anchor=south, draw=white!80.0!black},
 legend columns=3,
 tick align=outside,
 tick pos=left,

@@ -5,10 +5,11 @@ import numpy as np
 from tikzplotlib import save as tikz_save
 
 def make_plots(ret):
-    dt, theta1, theta2, w1, w2, z1, z2, j1, j2, t1, t2, p1, p2, tipPosX, tipPosY, tipVelX, tipVelY = ret
+    dt, theta1, theta2, w1, w2, z1, z2, j1, j2, t1, t2, p1, p2, tip1PosX, tip1PosY, tip1VelX, tip1VelY, tip2PosX, tip2PosY, tip2VelX, tip2VelY = ret
     time_t = [dt * i for i in range(0, len(theta1))]
     k = 8
     t = [round(i * max(time_t) / k, 3) for i in range(0, k + 1)]
+
     plt.figure(1)
     plt.subplot(611)
     plt.title('Minimum Mixed Objective - Joint 1')
@@ -94,13 +95,15 @@ def make_plots(ret):
     plt.figure(3)
     plt.subplot(211)
     plt.title('Minimum Mixed Objective - Tip')
-    plt.plot(time_t, tipPosX, time_t, tipPosY)
+    plt.plot(time_t, tip1PosX, time_t, tip1PosY)
+    plt.plot(time_t, tip2PosX, time_t, tip2PosY)
     plt.ylabel('Tip position [m]')
     plt.xlim([0, max(time_t)])
     plt.xticks(t, [])
     plt.grid()
     plt.subplot(212)
-    plt.plot(time_t, tipVelX, time_t, tipVelY)
+    plt.plot(time_t, tip1VelX, time_t, tip1VelY)
+    plt.plot(time_t, tip2VelX, time_t, tip2VelY)
     plt.ylabel('Tip speed [m/s]')
     plt.xlim([0, max(time_t)])
     plt.xticks(t, [])
@@ -110,11 +113,12 @@ def make_plots(ret):
 
     plt.figure(4)
     plt.title('X-Y Tip Position')
-    plt.plot(tipPosX, tipPosY)
+    plt.plot(tip1PosX, tip1PosY)
+    plt.plot(tip2PosX, tip2PosY)
     plt.xlabel('Tip X Postion[m]')
     plt.ylabel('Tip Y Position [m]')
-    plt.grid()
     tikz_save('../paper/figures/2link_tip_position_2d.tex')
+    plt.grid()
 
     plt.show()
 

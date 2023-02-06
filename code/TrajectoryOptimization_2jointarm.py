@@ -337,20 +337,36 @@ class TrajectoryGenerator:
     #     return f
 
     @staticmethod
-    def _TipPosXExpression(model, i):
+    def _Tip1PosXExpression(model, i):
+        return model.L1*cos(model.theta1[i])
+
+    @staticmethod
+    def _Tip2PosXExpression(model, i):
         return model.L1*cos(model.theta1[i]) + model.L2*cos(model.theta1[i]+model.theta2[i])
 
     @staticmethod
-    def _TipPosYExpression(model, i):
+    def _Tip1PosYExpression(model, i):
+        return model.L1*sin(model.theta1[i])
+
+    @staticmethod
+    def _Tip2PosYExpression(model, i):
         return model.L1*sin(model.theta1[i]) + model.L2*sin(model.theta1[i]+model.theta2[i])
 
     @staticmethod
-    def _TipVelXExpression(model, i):
+    def _Tip1VelXExpression(model, i):
+        return -model.L1*sin(model.theta1[i])*model.w1[i]
+
+    @staticmethod
+    def _Tip2VelXExpression(model, i):
         return -model.L1*sin(model.theta1[i])*model.w1[i] - \
                model.L2*sin(model.theta1[i]+model.theta2[i])*(model.w1[i]+model.w2[i])
 
     @staticmethod
-    def _TipVelYExpression(model, i):
+    def _Tip1VelYExpression(model, i):
+        return model.L1*cos(model.theta1[i])*model.w1[i]
+
+    @staticmethod
+    def _Tip2VelYExpression(model, i):
         return model.L1*cos(model.theta1[i])*model.w1[i] + \
                model.L2*cos(model.theta1[i]+model.theta2[i])*(model.w1[i]+model.w2[i])
 
@@ -415,10 +431,14 @@ class TrajectoryGenerator:
         optProg.t2 = Expression(optProg.N, rule=self._Torque2Expression)
         optProg.p1 = Expression(optProg.N, rule=self._Power1Expression)
         optProg.p2 = Expression(optProg.N, rule=self._Power2Expression)
-        optProg.tipPosX = Expression(optProg.N, rule=self._TipPosXExpression)
-        optProg.tipPosY = Expression(optProg.N, rule=self._TipPosYExpression)
-        optProg.tipVelX = Expression(optProg.N, rule=self._TipVelXExpression)
-        optProg.tipVelY = Expression(optProg.N, rule=self._TipVelYExpression)
+        optProg.tip1PosX = Expression(optProg.N, rule=self._Tip1PosXExpression)
+        optProg.tip1PosY = Expression(optProg.N, rule=self._Tip1PosYExpression)
+        optProg.tip1VelX = Expression(optProg.N, rule=self._Tip1VelXExpression)
+        optProg.tip1VelY = Expression(optProg.N, rule=self._Tip1VelYExpression)
+        optProg.tip2PosX = Expression(optProg.N, rule=self._Tip2PosXExpression)
+        optProg.tip2PosY = Expression(optProg.N, rule=self._Tip2PosYExpression)
+        optProg.tip2VelX = Expression(optProg.N, rule=self._Tip2VelXExpression)
+        optProg.tip2VelY = Expression(optProg.N, rule=self._Tip2VelYExpression)
 
         # Initial conditions
         optProg.theta1_0 = Constraint([0], rule=self._EqualityConstr(optProg.theta1, [self.theta1i]))
@@ -433,8 +453,8 @@ class TrajectoryGenerator:
         # optProg.w1_N = Constraint([N], rule=self._EqualityConstr(optProg.w1, [self.w1f], N))
         # optProg.theta2_N = Constraint([N], rule=self._EqualityConstr(optProg.theta2, [self.theta2f], N))
         # optProg.w2_N = Constraint([N], rule=self._EqualityConstr(optProg.w2, [self.w2f], N))
-        optProg.tipVelX_N = Constraint([N], rule=self._EqualityConstr(optProg.tipVelX, [self.tipVelXf], N))
-        optProg.tipVelY_N = Constraint([N], rule=self._EqualityConstr(optProg.tipVelY, [self.tipVelYf], N))
+        optProg.tipVelX_N = Constraint([N], rule=self._EqualityConstr(optProg.tip2VelX, [self.tipVelXf], N))
+        optProg.tipVelY_N = Constraint([N], rule=self._EqualityConstr(optProg.tip2VelY, [self.tipVelYf], N))
 
         # Dynamic constraints to ensure dynamic compatibility between theta, w, z, j
         optProg.w1_k = Constraint(optProg.Nf, rule=self._DynamicConstr(optProg.theta1, optProg.w1, self.dt))
@@ -527,15 +547,19 @@ class TrajectoryGenerator:
         t2 = self._ExtractData(solProg.t2, solProg.N)
         p1 = self._ExtractData(solProg.p1, solProg.N)
         p2 = self._ExtractData(solProg.p2, solProg.N)
-        tipPosX = self._ExtractData(solProg.tipPosX, solProg.N)
-        tipPosY = self._ExtractData(solProg.tipPosY, solProg.N)
-        tipVelX = self._ExtractData(solProg.tipVelX, solProg.N)
-        tipVelY = self._ExtractData(solProg.tipVelY, solProg.N)
+        tip1PosX = self._ExtractData(solProg.tip1PosX, solProg.N)
+        tip1PosY = self._ExtractData(solProg.tip1PosY, solProg.N)
+        tip1VelX = self._ExtractData(solProg.tip1VelX, solProg.N)
+        tip1VelY = self._ExtractData(solProg.tip1VelY, solProg.N)
+        tip2PosX = self._ExtractData(solProg.tip2PosX, solProg.N)
+        tip2PosY = self._ExtractData(solProg.tip2PosY, solProg.N)
+        tip2VelX = self._ExtractData(solProg.tip2VelX, solProg.N)
+        tip2VelY = self._ExtractData(solProg.tip2VelY, solProg.N)
 
         if var[0] == 't':
             dt = solProg.dt[1].value
         else:
             dt = self.dt
 
-        ret = [dt, theta1, theta2, w1, w2, z1, z2, j1, j2, t1, t2, p1, p2, tipPosX, tipPosY, tipVelX, tipVelY]
+        ret = [dt, theta1, theta2, w1, w2, z1, z2, j1, j2, t1, t2, p1, p2, tip1PosX, tip1PosY, tip1VelX, tip1VelY, tip2PosX, tip2PosY, tip2VelX, tip2VelY]
         return ret, solProg
