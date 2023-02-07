@@ -150,7 +150,6 @@ of the work.
 Trajectory motion consists of multiple kinematic variables, including
 displacement $d$, velocity $v$, acceleration $a$, and jerk $j$,
 all as a function of time and related through the kinematic equations
-
 \begin{align}
 \begin{split}\dot{d} & =v\\
 \dot{v} & =a\\
@@ -161,7 +160,6 @@ all as a function of time and related through the kinematic equations
 
 These variables are typically subject to a variety of constraints
 on their possible values
-
 \begin{align}
 \begin{split}\underline{v}\leq v\leq\overline{v}\\
 \underline{a}\leq a\leq\overline{a}\\
@@ -172,7 +170,7 @@ on their possible values
 where upper $\overline{\APLbox}$ and lower $\underline{\APLbox}$
 limits are determined through electromechanical system requirements
 and specifications. The trajectory optimization problem can be formulated
-as a standard optimization~\cite{nocedal2006numerical} of the form:
+as a standard optimization problem of the form 
 \begin{align}
 \begin{split} & \min\limits _{\mathbf{x}}\;J\\
 s.t.\quad & \mathbf{Ax}=\mathbf{b}\\
@@ -185,8 +183,7 @@ vector of decision variables, and $\mathbf{A}$, $\mathbf{b}$, $\mathbf{H}$,
 and $\mathbf{k}$ are appropriately sized matrices and vectors describing
 the problem constraints. The kinematic motion of the system \ref{eq:dynamics}
 can be discretized and used as constraint equations between the decision
-variables:
-
+variables
 \begin{align}
 \begin{split}d_{k+1}=d_{k}+v_{k}\Delta t\\
 v_{k+1}=v_{k}+a_{k}\Delta t\\
@@ -499,7 +496,10 @@ result of interest here is that the trajectory produced by minimizing
 $\|v\|_{1}$ uses less peak power.
 
 \begin{figure}
-\centering{}\input{figures/min_v_lowhigh.tex} \caption{Minimum velocity trajectories - nominal $\bar{j}$ (solid) and 10x
+\begin{centering}
+\input{figures/min_v_lowhigh.tex} 
+\par\end{centering}
+\centering{}\setlength{\abovecaptionskip}{-6pt}\caption{Minimum velocity trajectories - nominal $\bar{j}$ (solid) and 10x
 $\bar{j}$ (dashed)}
 \label{fig:min_v}
 \end{figure}
@@ -524,8 +524,9 @@ velocity profiles.
 \begin{centering}
 \input{figures/min_a.tex}
 \par\end{centering}
-\caption{Minimum acceleration trajectories}
-
+\begin{centering}
+\setlength{\abovecaptionskip}{-6pt}\caption{Minimum acceleration trajectories}
+\par\end{centering}
 \centering{}\label{fig:min_a}
 \end{figure}
 
@@ -533,8 +534,9 @@ velocity profiles.
 \begin{centering}
 \input{figures/min_j.tex}
 \par\end{centering}
-\caption{Minimum jerk trajectories}
-
+\begin{centering}
+\setlength{\abovecaptionskip}{-6pt}\caption{Minimum jerk trajectories}
+\par\end{centering}
 \centering{}\label{fig:min_j}
 \end{figure}
 
@@ -554,8 +556,9 @@ minimum total energy solution, as was shown via \eqref{eq:energy}.
 \begin{centering}
 \input{figures/min_p.tex}
 \par\end{centering}
-\caption{Minimum power trajectories}
-
+\begin{centering}
+\setlength{\abovecaptionskip}{-6pt}\caption{Minimum power trajectories}
+\par\end{centering}
 \centering{}\label{fig:min_p}
 \end{figure}
 
@@ -574,8 +577,9 @@ able to lower to total energy used in the motion.
 \begin{centering}
 \input{figures/min_dt.tex}
 \par\end{centering}
-\caption{Minimum time trajectory}
-
+\begin{centering}
+\setlength{\abovecaptionskip}{-6pt}\caption{Minimum time trajectory}
+\par\end{centering}
 \centering{}\label{fig:min_t}
 \end{figure}
 
@@ -640,7 +644,6 @@ $\|\cdot\|_{\infty}$ & 5.13 & 3.06 & 3.33 & 1.00 &  & \tabularnewline
 Extension of the trajectory optimization framework to mixed optimization
 problems can be easily handled by modifying the cost function in \eqref{eq:baseProgram}
 with the weighted multi-objective formulation
-
 \begin{align}
 \begin{split} & \min\limits _{\mathbf{x}}\;\sum_{i}w_{i}J_{i}\\
 s.t.\quad & \mathcal{C}\\
@@ -663,7 +666,10 @@ cost functions where an engineer can find a motion profile that appropriately
 balances the needs of their particular system.
 
 \begin{figure}
-\centering{}\input{figures/multiobj_e_p.tex} \caption{Minimum mixed total energy-peak power objective trajectories -- equal
+\begin{centering}
+\input{figures/multiobj_e_p.tex} 
+\par\end{centering}
+\centering{}\setlength{\abovecaptionskip}{-6pt}\caption{Minimum mixed total energy-peak power objective trajectories -- equal
 weighting}
 \label{fig:multiobj_e_p}
 \end{figure}
@@ -733,12 +739,17 @@ variables, and constraints.
 \label{fig:SCARA_states}
 \end{figure}
 \begin{figure}
-\centering{}\input{figures/2link_trajectory.tex} \caption{SCARA motion profiles}
+\begin{centering}
+\input{figures/2link_trajectory.tex} 
+\par\end{centering}
+\centering{}\setlength{\abovecaptionskip}{-6pt}\caption{SCARA motion profiles}
 \label{fig:SCARA_trajectories}
 \end{figure}
 \begin{figure}
-\centering{}\input{figures/2link_tip_position_history_forpaper.tex}
-\caption{SCARA tip trajectories}
+\begin{centering}
+\input{figures/2link_tip_position_history_forpaper.tex} 
+\par\end{centering}
+\centering{}\setlength{\abovecaptionskip}{-6pt}\caption{SCARA tip trajectories}
 \label{fig:SCARA_tip_position-trajectories}
 \end{figure}
 
