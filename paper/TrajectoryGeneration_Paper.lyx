@@ -46,12 +46,11 @@
 Single- and Multi-Degree of Freedom Servo Trajectory Generation: An
 Optimization Framework, Implementation, and Examples
 }
-\author{Layne Clemen$^{1}$ and Cory J. Rupp$^{2,*}$%
+\author{Layne Clemen$^{1}$ and Cory J. Rupp$^{2}$%
 \thanks{$^{1}$Elexity, Bend, OR, USA
 	{\tt\small layne@elexity.io}}%
-\thanks{$^{2}$ATA Engineering, Inc., Lakewood, CO, USA
-	{\tt\small cory.rupp@ata-e.com}}%
-\thanks{$^{*}$Corresponding author}%
+\thanks{$^{2}$ATA Engineering, Inc., Lakewood, CO, USA, corresponding author}%
+\thanks{{\tt\small cory.rupp@ata-e.com}}%
 }
 \end_preamble
 \options letterpaper,conference
@@ -269,24 +268,28 @@ literal "false"
 \begin_layout Standard
 Two types of movement profiles are typically implemented in commercial of
  the shelf (COTS) motor controllers: a trapezoidal profile or an S-curve.
- Parameters for these profiles are commonly generated online by tweaking
- the motion parameters until the engineer achieves acceptable performance,
- usually focusing on one aspect (e.g., velocity or acceleration) while disregardin
-g other factors.
+ Parameters for these profiles are generated online by tweaking the parameters
+ until the engineer achieves acceptable performance, usually focusing on
+ one aspect (e.g., velocity or acceleration) while disregarding other factors.
  While these profiles work well for general applications, there exists a
  need to optimize systems for additional performance metrics such as reducing
- controller and mechanical energy usage and wear.
+ energy usage and wear.
  Trajectory generation for multi-degree for freedom platforms rarely considers
- such secondary as energy usage, although their application are equally
- needed.
+ secondary effects like energy usage, although their effects can be equally
+ important.
 \end_layout
 
 \begin_layout Standard
 This paper presents a simple offline framework to generate motion trajectories
  optimized under various performance objectives.
- This framework casts trajectory generation as a continuous optimization
+ While most trajectory generation tools require sophisticated kinetic models,
+ this framework casts trajectory generation as a continuous optimization
  problem with constraints relating the kinematics of the system.
- The theoretical development is implemented in Pyomo
+ Optimization of the kinematics only offers a partial solution to the full
+ system optimization problem and moves the need to compensate for uncertainty
+ and kinetics onto the control algorithms, design, and component selection
+ of an engineering project.
+ The theoretical development of the framework is implemented in Pyomo
 \begin_inset space ~
 \end_inset
 
@@ -690,7 +693,7 @@ The 2-norm only varies from the RMS value by a constant of
 \begin_inset Text
 
 \begin_layout Plain Layout
-(Peak or Inifinty Norm)
+(Peak or Infinity Norm)
 \end_layout
 
 \end_inset
@@ -922,8 +925,10 @@ begin{remark}
 
  The minimization of power produces a lower bound on the power the actuator
  must inject into the system.
- In a real system, one would also have to account for the system friction.
- To do this, it can be assumed that the friction has the form
+ In a real system, one would also have to account for uncertainties and
+ inefficiencies.
+ An example is friction, which can be treated by assumed that it has the
+ form
 \begin_inset Formula 
 \begin{equation}
 \mathbf{F}_{friction}=f(\mathbf{v})
@@ -987,8 +992,8 @@ where
 \begin_inset Formula $N$
 \end_inset
 
- is again the number of time steps.
- It is important here to ensure that the time discretization factor 
+ is the number of time steps.
+ It is important to ensure that the time discretization factor 
 \begin_inset Formula $N$
 \end_inset
 
@@ -998,8 +1003,7 @@ where
 \end_inset
 
  encountered while solving the optimization problem.
- An easy way to do this would be to add side constraints to the permissible
- of 
+ An easy way to do this is to add side constraints to the permissible 
 \begin_inset Formula $\Delta t$
 \end_inset
 
@@ -1084,20 +1088,18 @@ The use of algebraic modeling languages makes trajectory optimization programs
  limited knowledge of optimization solvers and nomenclature.
  With that said that are two aspects to note when implementing these programs
  in an AML package.
- For this paper, the above problems were implemented using Pyomo, for which
- the range of math functions that are available for the solvers is limited.
+ For this paper, the method was implemented using Pyomo, for which the range
+ of math functions that are available for the solvers is limited.
  For example, norms are not supported so additional decision variables,
  constraints, and cost function changes were required to complete the problem
  formulation.
- These adaptation are described here.
+ These adaptations are described here.
  The optimization code used in this paper is provided on GitHub at 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-TBDsite
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "https://github.com/ATAEngineering/TrajectoryOptimization"
+target "https://github.com/ATAEngineering/TrajectoryOptimization"
+literal "false"
 
 \end_inset
 
@@ -1194,23 +1196,23 @@ s.t.\quad & \mathcal{C}\\
 \end_inset
 
 where 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula $x_{k}$
 \end_inset
 
  may be 
-\begin_inset Formula $\mathbf{v}$
+\begin_inset Formula $v_{k}$
 \end_inset
 
 , 
-\begin_inset Formula $\mathbf{a}$
+\begin_inset Formula $a_{k}$
 \end_inset
 
 , 
-\begin_inset Formula $\mathbf{j}$
+\begin_inset Formula $j_{k}$
 \end_inset
 
 , or 
-\begin_inset Formula $\mathbf{P}$
+\begin_inset Formula $P_{k}$
 \end_inset
 
 .
@@ -1240,23 +1242,23 @@ s.t.\quad & \mathcal{C}
 \end_inset
 
 where 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula $x_{k}$
 \end_inset
 
  may be 
-\begin_inset Formula $\mathbf{v}$
+\begin_inset Formula $v_{k}$
 \end_inset
 
 , 
-\begin_inset Formula $\mathbf{a}$
+\begin_inset Formula $a_{k}$
 \end_inset
 
 , 
-\begin_inset Formula $\mathbf{j}$
+\begin_inset Formula $j_{k}$
 \end_inset
 
 , or 
-\begin_inset Formula $\mathbf{P}$
+\begin_inset Formula $P_{k}$
 \end_inset
 
 .
@@ -1320,23 +1322,23 @@ s.t.\quad & \mathcal{C}\\
 \end_inset
 
 where 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula $x_{k}$
 \end_inset
 
  may be 
-\begin_inset Formula $\mathbf{v}$
+\begin_inset Formula $v_{k}$
 \end_inset
 
 , 
-\begin_inset Formula $\mathbf{a}$
+\begin_inset Formula $a_{k}$
 \end_inset
 
 , 
-\begin_inset Formula $\mathbf{j}$
+\begin_inset Formula $j_{k}$
 \end_inset
 
 , or 
-\begin_inset Formula $\mathbf{P}$
+\begin_inset Formula $P_{k}$
 \end_inset
 
 .
@@ -1478,7 +1480,7 @@ name "tab:sysParams"
 \begin_inset Text
 
 \begin_layout Plain Layout
-mass (
+Mass (
 \begin_inset Formula $m$
 \end_inset
 
@@ -1696,32 +1698,16 @@ noprefix "false"
 
 \end_inset
 
- shows the minimum velocity trajectories for all norms studied using the
- nominal 
-\begin_inset Formula $\bar{j}$
+ shows the minimum velocity trajectories for all norms studied using 
+\begin_inset Formula $\bar{j}=98.1\,m/s^{3}$
 \end_inset
 
- and when 
-\begin_inset Formula $\bar{j}$
-\end_inset
-
- is 10 times higher than listed in Table
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "tab:sysParams"
-plural "false"
-caps "false"
-noprefix "false"
-
+ and also 
+\begin_inset Formula $\bar{j}=981\,m/s^{3}$
 \end_inset
 
 .
- For the nominal jerk allowable, the familiar S-curve trajectory results
- from the minimization of the 
+ The familiar S-curve trajectory results from minimization of the 
 \begin_inset Formula $\mathcal{L}_{2}$
 \end_inset
 
@@ -1729,7 +1715,11 @@ noprefix "false"
 \begin_inset Formula $\mathcal{L}_{\infty}$
 \end_inset
 
- norms.
+ norms when 
+\begin_inset Formula $\bar{j}=98.1\,m/s^{3}$
+\end_inset
+
+.
  As the allowable jerk increase, these curves morph into the familiar trapezoida
 l profile, with indistinguishable results when using the 
 \begin_inset Formula $\mathcal{L}_{2}$
@@ -1786,12 +1776,12 @@ abovecaptionskip}{-6pt}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Minimum velocity trajectories - nominal 
-\begin_inset Formula $\bar{j}$
+Minimum velocity trajectories - 
+\begin_inset Formula $\bar{j}=98.1\,m/s^{3}$
 \end_inset
 
- (solid) and 10x 
-\begin_inset Formula $\bar{j}$
+ (solid) and 
+\begin_inset Formula $\bar{j}=981\,m/s^{3}$
 \end_inset
 
  (dashed)
@@ -1835,9 +1825,8 @@ Minimal Acceleration and Jerk
 \end_layout
 
 \begin_layout Standard
-Minimizing the acceleration across the 3 norms results in significantly
+Minimizing the acceleration across the three norms results in significantly
  different trajectory profiles.
- .
  The results shown in Fig.
 \begin_inset space ~
 \end_inset
@@ -1939,10 +1928,6 @@ Minimum acceleration trajectories
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\align center
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:min_a"
@@ -2001,10 +1986,6 @@ Minimum jerk trajectories
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\align center
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:min_j"
@@ -2115,10 +2096,6 @@ Minimum power trajectories
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\align center
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:min_p"
@@ -2250,9 +2227,9 @@ noprefix "false"
 \begin_inset Formula $\mathcal{L}_{1}$
 \end_inset
 
- norm of Power similarly achieves the minimum total energy mark.
- Minimal peak power, on the other hand, is generally reduced by minimizing
- the jerk or more directly so by minimizing the 
+ norm of Power similarly achieves the minimum total energy.
+ Minimal peak power is reduced by minimizing the jerk or more directly by
+ minimizing the 
 \begin_inset Formula $\mathcal{L}_{\infty}$
 \end_inset
 
@@ -3260,18 +3237,7 @@ wind-up
  joint position constraints (i.e., it is not possible to reach the tip speeds
  if only forward motion is allowed).
  The optimization code used for this example, along with specific link dimension
-s and properties, is provided on GitHub at 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-TBDsite
-\end_layout
-
-\end_inset
-
-.
+s and properties, is provided on the GitHub repository.
  Readers are encouraged to explore this example to better understand the
  relationship between the problem formulation, variables, and constraints.
 \end_layout
