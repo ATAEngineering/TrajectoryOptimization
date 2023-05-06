@@ -1,7 +1,37 @@
+#
+# Copyright (c) 2021, ATA Engineering, Inc.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
 import matplotlib.pyplot as plt
-import TrajectoryOptimization as TrajectoryOptimization
-import numpy as np
 from tikzplotlib import save as tikz_save
+
+import TrajectoryOptimization as TrajectoryOptimization
 
 # This code calculates a multiobjective trajectory optimization problem and plots the resulting trajectory
 
@@ -21,9 +51,8 @@ print(accel_max, j_max)
 trajectory = TrajectoryOptimization.TrajectoryGenerator(distance, dt, mass, [0, vel_max], [-accel_max, accel_max],
                                                         [-j_max, j_max], [-p_max, p_max], tf=final_time)
 
-# Calculate minimum total energy trajectory
-# ret, solProg = trajectory.GenerateTrajectory(var=['v', 'j'], norm=['abs', 'abs'], weights=[1.0, 0.00000001])
-ret, solProg = trajectory.GenerateTrajectory(var=['p', 'p'], norm=['abs', 'peak'], weights=[dt*0.5, 0.5])  # Energy and peak power
+# Calculate minimum total energy trajectory and peak power
+ret, solProg = trajectory.GenerateTrajectory(var=['p', 'p'], norm=['abs', 'peak'], weights=[dt*0.5, 0.5])
 d_t, v_t, a_t, j_t, P_t, dt = ret
 time_t = [dt * i for i in range(0, len(d_t))]
 E_e = sum(abs(P) * dt for P in P_t)

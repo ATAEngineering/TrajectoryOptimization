@@ -1,11 +1,43 @@
+#
+# Copyright (c) 2021, ATA Engineering, Inc.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
 import matplotlib.pyplot as plt
-import TrajectoryOptimization_2jointarm as TrajectoryOptimization
 import math
-import numpy as np
 from tikzplotlib import save as tikz_save
 
+import TrajectoryOptimization_2jointarm as TrajectoryOptimization
+
+
 def make_plots(ret):
-    dt, theta1, theta2, w1, w2, z1, z2, j1, j2, t1, t2, p1, p2, tip1PosX, tip1PosY, tip1VelX, tip1VelY, tip2PosX, tip2PosY, tip2VelX, tip2VelY = ret
+    dt, theta1, theta2, w1, w2, z1, z2, j1, j2, t1, t2, p1, p2,\
+        tip1PosX, tip1PosY, tip1VelX, tip1VelY, tip2PosX, tip2PosY, tip2VelX, tip2VelY = ret
     time_t = [dt * i for i in range(0, len(theta1))]
     k = 8
     t = [round(i * max(time_t) / k, 3) for i in range(0, k + 1)]
@@ -160,19 +192,17 @@ jerk1_max = 1000.0  # Maximum angular jerk, [rad/s^3]
 jerk2_max = 1000.0  # Maximum angular jerk, [rad/s^3]
 
 trajectory = TrajectoryOptimization.TrajectoryGenerator(dt,
-                                                        theta1i, theta2i, theta1f, theta2f, w1f, w2f, tipVelXf, tipVelYf,
+                                                        theta1i, theta2i, theta1f, theta2f, w1f, w2f,
+                                                        tipVelXf, tipVelYf,
                                                         tipmass, arm1mass, arm2mass, J1, J2,
                                                         L1, L2,
                                                         [theta1_min, theta1_max], [theta2_min, theta2_max],
                                                         [-w1_max, w1_max], [-w2_max, w2_max],
                                                         [-z1_max, z1_max], [-z2_max, z2_max],
-                                                        [-jerk1_max, jerk1_max], [-jerk2_max, jerk2_max], tf=final_time)
+                                                        [-jerk1_max, jerk1_max], [-jerk2_max, jerk2_max],
+                                                        tf=final_time)
 
 # Calculate minimum total energy trajectory
 ret, solProg = trajectory.GenerateTrajectory(var=['p1', 'p2'], norm=['peak', 'peak'], weights=[0.5, 0.5])
-# ret, solProg = trajectory.GenerateTrajectory(var=['v', 'j'], norm=['abs', 'abs'], weights=[1.0, 0.00000001])
-# ret, solProg = trajectory.GenerateTrajectory(var=['p', 'p'], norm=['abs', 'peak'], weights=[dt*0.5, 0.5])  # Energy and peak power
 
 make_plots(ret)
-
-

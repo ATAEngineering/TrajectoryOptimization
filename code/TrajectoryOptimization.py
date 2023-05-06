@@ -1,9 +1,37 @@
+#
+# Copyright (c) 2021, ATA Engineering, Inc.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
 import pyomo.opt
 from pyomo.core.util import sum_product
-from pyomo.core.expr.current import evaluate_expression
-from pyomo.environ import Objective, Constraint, Expression, Var, Param, ConcreteModel, SolverFactory, RangeSet, Reals, \
-    PositiveReals
-import matplotlib.pyplot as plt
+from pyomo.environ import Objective, Constraint, Expression, Var, Param, ConcreteModel, SolverFactory, RangeSet,\
+    Reals, PositiveReals
 import math
 
 
@@ -137,7 +165,7 @@ class TrajectoryGenerator:
 
             for iobj, (norm, var, weight) in enumerate(zip(norms, vars, weights)):
 
-                if norm == 'peak':
+                if norm == 'peak':  # Peak
                     name1 = 'abs_var' + str(iobj)
                     name2 = 'upper_abs_constraint' + str(iobj)
                     name3 = 'lower_abs_constraint' + str(iobj)
@@ -145,14 +173,9 @@ class TrajectoryGenerator:
                     name5 = 'PeakConstraint' + str(iobj)
 
                     # Define Xk for each variable
-                    # model.abs_var[iobj] = Var(model.N, domain=Reals)
                     model.add_component(name1, Var(model.N, domain=Reals))
 
                     # Define each constraint of the form xk <= Xk <= xk
-                    # model.upper_abs_constraint[iobj] = Constraint(model.N, rule=self._UpperAbsConstr(getattr(model, var),
-                    #                                                                            model.abs_var))
-                    # model.lower_abs_constraint[iobj] = Constraint(model.N, rule=self._LowerAbsConstr(getattr(model, var),
-                    #                                                                            model.abs_var))
                     model.add_component(name2, Constraint(model.N, rule=self._UpperAbsConstr(getattr(model, var),
                                                                                              getattr(model, name1))))
                     model.add_component(name3, Constraint(model.N, rule=self._LowerAbsConstr(getattr(model, var),
@@ -160,48 +183,33 @@ class TrajectoryGenerator:
                     # Instantiate the max variable
                     # WILL NEED TO MAX THIS THE NUMBER OF MAX VARIABLES FOR NUMBER OF MAX IN MULTI-OBJECTIVE use the
                     # getattr and setattr functions
-                    # model.max[iobj] = Var([1], domain=Reals)
                     model.add_component(name4, Var([1], domain=Reals))
 
                     # Create the peak variable constraints
-                    # model.PeakConstraint[iobj] = Constraint(model.N, rule=self._PeakConst(model.abs_var, model.max[1]))
                     model.add_component(name5, Constraint(model.N, rule=self._PeakConst(getattr(model, name1),
-                                                                                             getattr(model, name4)[1])))
+                                                                                        getattr(model, name4)[1])))
 
                     # Add the max variable to the total objective
-                    # objective += weight * model.max[iobj]
                     objective += weight * getattr(model, name4)[1]
-                    # model.pprint()
-                    # quit()
 
-                elif norm == 'rms':
+                elif norm == 'rms':  # Root-mean-square
                     objective += weight * sum(getattr(model, var)[i] ** 2 for i in model.N)
 
-                elif norm == 'abs':
-                    # if not hasattr(model, 'abs_var'):
-                    #     model.abs_var = []
-                    #     model.upper_abs_constraint = []
-                    #     model.lower_abs_constraint = []
+                elif norm == 'abs':  # Absolute value
                     name1 = 'abs_var' + str(iobj)
                     name2 = 'upper_abs_constraint' + str(iobj)
                     name3 = 'lower_abs_constraint' + str(iobj)
 
                     # Define Xk for each variable
-                    # model.abs_var.append(Var(model.N, domain=Reals))
                     model.add_component(name1, Var(model.N, domain=Reals))
 
                     # Define each constraint of the form xk <= Xk <= xk
-                    # model.upper_abs_constraint.append(Constraint(model.N, rule=self._UpperAbsConstr(getattr(model, var),
-                    #                                                                            model.abs_var)))
-                    # model.lower_abs_constraint.append(Constraint(model.N, rule=self._LowerAbsConstr(getattr(model, var),
-                    #                                                                            model.abs_var)))
                     model.add_component(name2, Constraint(model.N, rule=self._UpperAbsConstr(getattr(model, var),
                                                                                              getattr(model, name1))))
                     model.add_component(name3, Constraint(model.N, rule=self._LowerAbsConstr(getattr(model, var),
                                                                                              getattr(model, name1))))
 
                     # Define the sum of the absolute values
-                    # objective += weight * sum(model.abs_var[iobj][i] for i in model.N)
                     objective += weight * sum(getattr(model, name1)[i] for i in model.N)
 
             return objective
@@ -250,40 +258,14 @@ class TrajectoryGenerator:
 
         return data
 
-    # @staticmethod
-    # def _PowerCalculation(a, v, mass):
-    #     return [mass * a * v for a, v in zip(a, v)]
-
-    # @staticmethod
-    # def _EnergyCalculation(a, v, dt):
-    #     # Assuming constant dt
-    #     return sum(abs(a * v) for a, v in zip(a, v)) * dt
-
     @staticmethod
     def _PowerExpression(model, i):
         return model.a[i] * model.v[i] * model.mass
-        # return [a*v for a, v in zip(model.a, model.v)]
-        # TrajectoryGenerator._PowerCalculation(model.a, model.v)
 
     @staticmethod
     def _TotalEnergyExpression(model, i):
         val = sum_product(model.a, model.v)*model.mass*model.dt
         return val
-        # return TrajectoryGenerator._EnergyCalculation(model.a, model.v, model.dt)
-
-    # @staticmethod
-    # def _PowerConstr():
-    #     def f(model, i):
-    #         return model.p[i] == model.a[i] * model.v[i]
-    #
-    #     return f
-
-    # @staticmethod
-    # def _PowerConstraints():
-    #     def f(model, i):
-    #         return model.p[i] == model.a[i] * model.v[i]
-    #
-    #     return f
 
     def OptimizationInitialize(self):
         # This initializes the model and sets as many of the system parameters and variables as possible.
@@ -314,9 +296,7 @@ class TrajectoryGenerator:
         optProg.v = Var(optProg.N, domain=Reals, bounds=self._VariableBounds(v_min, v_max))
         optProg.a = Var(optProg.N, domain=Reals, bounds=self._VariableBounds(a_min, a_max))
         optProg.j = Var(optProg.N, domain=Reals, bounds=self._VariableBounds(j_min, j_max))
-        # optProg.p = Var(optProg.N, domain=Reals, bounds=self._VariableBounds(p_min, p_max))
         optProg.p = Expression(optProg.N, rule=self._PowerExpression)
-        # optProg.e = Var([1], domain=PositiveReals)  # Scalar
         optProg.e = Expression([1], rule=self._TotalEnergyExpression)
 
         # t0 and tf constraints
@@ -368,7 +348,6 @@ class TrajectoryGenerator:
             solProg.a_k = Constraint(solProg.Nf, rule=self._DynamicConstr(solProg.a, solProg.j, solProg.dt[1]))
 
         elif var[0] == 'e':
-            # solProg.obj = Objective(rule=self._energyObj(self.dt))
             # The total energy objective is equivalent to the 1-norm of power multiplied by dt
             solProg.obj = Objective(rule=self._Objective(['abs'], ['p'], [self.dt]))
 
