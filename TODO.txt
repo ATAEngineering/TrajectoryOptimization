@@ -1,2 +1,0 @@
--Add license to all files
--Clean up code

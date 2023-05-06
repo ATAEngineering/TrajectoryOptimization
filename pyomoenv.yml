@@ -1,0 +1,10 @@
+name: pyomo
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - ipopt
+  - matplotlib
+  - pyomo=5.7
+  - python
+  - tikzplotlib
