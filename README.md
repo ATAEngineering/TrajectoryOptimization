@@ -4,7 +4,7 @@ An optimization framework for servo trajectory generation.
 
 This repository contains the companion code for the following paper:
 
-Clemen, L. and Rupp, C.J. "Single- and Multi-Degree of Freedom Servo Trajectory Generation: An Optimization Framework, Implementation, and Examples." Proceedings of the 2023 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM). June 2023.
+Clemen, L. and Rupp, C.J. "Single- and Multi-Degree-of-Freedom Servo Trajectory Generation: An Optimization Framework, Implementation, and Examples." Proceedings of the 2023 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM). June 2023.
 
 ## License
 
